@@ -115,6 +115,16 @@ Authorization: Nostr <base64url-no-padding-token>
 ```
 
 
+## HTTP Error Codes
+
+Servers responding to requests authenticated with a NWT SHOULD use the following HTTP status codes:
+
+| Code | Meaning | When to use |
+|------|---------|-------------|
+| `401 Unauthorized` | Missing or invalid token | The `Authorization` header is absent, the token is malformed, the signature is invalid, or the token is expired |
+| `403 Forbidden` | Insufficient permissions | The token is valid but does not grant access to the requested resource (e.g. wrong audience, missing claim) |
+
+
 ## Security Considerations
 
 NWTs are primarily intended for authentication and/or authorization purposes. Just like JWTs, they are bearer tokens; if a malicious actor is able to get a NWT, it may use it to impersonate the user.
