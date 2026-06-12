@@ -139,7 +139,7 @@ Because of that, it is recommended to:
 
 Here is a list of libraries implementing NWT.
 
-- **Go**: https://github.com/pippellia-btc/nwt 
+- **Go**: https://github.com/Open-Ranking/nwt 
 
 ## Comparisons
 
