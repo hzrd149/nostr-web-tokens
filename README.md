@@ -178,6 +178,7 @@ Example event:
     "tags": [
         ["t", "upload"],
         ["x", "b1674191a88...4f553"],
+        ["server", "blossom.example.com"],
         ["expiration", "1708858680"]
     ],
     "content": "",
@@ -185,11 +186,12 @@ Example event:
 }
 ```
 
-In NWT terms, blossom authorization events always have the audience set to "everyone", which allows for dangerous replay-attacks as follows:
+Before [BUD-11](https://github.com/hzrd149/blossom/blob/master/buds/11.md), Blossom auth was subject to the following replay attack:
 
 * Alice sends a DELETE to Server 1, with the required authorization event
 * Before expiration, Server 1 can impersonate Alice and forward the DELETE to Server 2
 
-This attack can occur in very practical scenarios, such as Alice wanting to switch blossom server providers.
+This attack could occur in very practical scenarios, such as Alice wanting to switch blossom server providers.
+However, this was fixed with the introduction of `server` tags, which map exactly to the `aud` tag in NWT.
 
-Secondly, Blossom auth doesn't allow users to specify "not before" timestamps, nor allows app developers to add custom claims.
+The current main drawback of Blossom auth is that it doesn't allow users to specify "not before" timestamps, nor allows app developers to add custom claims.
